@@ -21,3 +21,9 @@ Route::controller(NewsController::class)->prefix('admin')->group(function() {
 
 
 
+Route::controller(AAAController::class)->group(function()
+{
+    Route::get('XXX','bbb');
+    
+});
+
