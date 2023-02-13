@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
     @extends('layouts.admin')
     @section('title', 'ニュースの新規作成')
     @section('content')
@@ -11,4 +9,4 @@
             </div>
         </div>
     @endsection
-</html>
+    
