@@ -18,6 +18,17 @@ class ProfileController extends Controller
     public function create()
     {
         return redirect('admin/profile/create');
+        
+        $this->validate($request, Profile::$rules);
+        
+        $profile = new Profile;
+        $form = $request->all();
+        
+        $profile->fill($form);
+        $profile->save();
+        
+        return redirect('admin/profile/edit');
+        
     }
 
     public function edit()
@@ -28,14 +39,5 @@ class ProfileController extends Controller
     public function update()
     {
         
-        $this->validate($request, Profile::$rules);
-        
-        $profile = new Profile;
-        $form = $request->all();
-        
-        $profile->fill($form);
-        $profile->save();
-        
-        return redirect('admin/profile/create');
     }
 }
