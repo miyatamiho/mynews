@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 use App\Models\News;
 
+use App\Models\History;
+
+use Carbon\Carbon;
+
 class NewsController extends Controller
 {
     //
@@ -38,7 +42,7 @@ class NewsController extends Controller
         
         return redirect('admin/news/create');
     }
-public function index(Request $request)
+    public function index(Request $request)
     {
         $cond_title = $request->cond_title;
             if ($cond_title != '') {
@@ -51,7 +55,7 @@ public function index(Request $request)
         return view('admin.news.index' , ['posts' => $posts, 'cond_title' => $cond_title]);
     }
     
-public function edit(Request $request)
+    public function edit(Request $request)
     {
         $news = News::find($request->id);
         if (empty($news)){
@@ -60,7 +64,7 @@ public function edit(Request $request)
         return view('admin.news.edit', ['news_form' =>$news]);
     }
 
-public function update(Request $request)
+    public function update(Request $request)
     {
         $this->validate($request, News::$rules);
         $news = News::find($request->id);
@@ -80,6 +84,11 @@ public function update(Request $request)
         unset($news_form['_token']);
         
         $news->fill($news_form)->save();
+        
+        $history = new History();
+        $history->news_id = $news->id;
+        $history->edited_at = Carbon::now();
+        $history->save();
         
         return redirect('admin/news');
     }
