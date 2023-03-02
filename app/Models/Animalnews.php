@@ -5,14 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProfileHistory extends Model
+class Animalnews extends Model
 {
     use HasFactory;
     
     protected $guarded = array('id');
-
+    
     public static $rules = array(
-        'profile_id' => 'required',
-        'edited_at' => 'required',
-    );
+        'title' => 'required',
+        'body' => 'required',
+        );
+    public function animalhistories()
+    {
+        return $this->hasMany('App\Models\Animalhistory');
+    }
 }

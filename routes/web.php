@@ -40,6 +40,17 @@ Route::controller(ProfileController::class)->prefix('admin')->name('admin.')->mi
     Route::get('profile.delete', 'delete')->name('profile.delete');
 });
 
+use App\Http\Controllers\Admin\AnimalnewsController;
+Route::controller(AnimalnewsController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function(){
+    Route::post('animalnews/create', 'create')->name('animalnews.create');
+    Route::get('animalnews/create', 'add')->name('animalnews.add');
+    Route::get('animalnews', 'index')->name('animalnews.index');
+    Route::get('animalnews/edit', 'edit')->name('animalnews.edit');
+    Route::post('animalnews/edit', 'update')->name('animalnews.update');
+    Route::get('animalnews.delete', 'delete')->name('animalnews.delete');
+
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -48,6 +59,10 @@ use App\Http\Controllers\NewsController as PublicNewsController;
     Route::get('/', [PublicNewsController::class, 'index'])->name('news.index');
     
 use   App\Http\Controllers\ProfileController as PublicProfileController;
-    Route::get('/profile', [PublicProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile', [PublicProfileContusroller::class, 'index'])->name('profile.index');
+    
+use App\Http\Controllers\AnimalnewsController as PublicAnimalnewsController;
+    Route::get('/animalnews', [PublicAnimalnewsController::class, 'index'])->name('animalnews.index');
+    
     
     
