@@ -61,7 +61,7 @@ class AnimalnewsController extends Controller
         if (empty($animalnews)){
             abort(404);
         }
-        return view('admin.animalnews.edit', ['animalnewsnews_form' =>$animalnews]);
+        return view('admin.animalnews.edit', ['animalnews_form' =>$animalnews]);
     }
 
     public function update(Request $request)
