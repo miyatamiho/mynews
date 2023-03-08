@@ -8,7 +8,7 @@ use App\Models\Profile;
 
 class ProfileController extends Controller
 {
-    public function index(Request $requerst)
+       public function index(Request $requerst)
     {
         $posts = Profile::all()->sortByDesc('update_at');
         

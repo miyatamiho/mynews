@@ -8,6 +8,7 @@ use App\Models\Animalnews;
 
 class AnimalnewsController extends Controller
 {
+   
     public function index(Request $request)
     {
         $posts = Animalnews::all()->sortByDesc('update_at');
